@@ -307,7 +307,33 @@ export default {
             const sustain_value = Math.floor(Math.random() * (33 + 33 + 1)) - 33;
             var percent = `${sustain_value}%`
             sustain_arrow.style.marginLeft = percent;
+            const pixel = map.getEventPixel(evt.originalEvent);
+            const feature = map.forEachFeatureAtPixel(pixel, function (feature) {
+                return feature;
+            });
+            var countryName = {};
+            if(feature) {
+                countryName.innerHTML = feature.get('ADMIN') || '&nbsp;';
+                countryName = countryName.innerHTML;
+            }
+
+            console.log(countryName);
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            };
+            yolo(requestOptions);
+            
+
         });
+
+        const yolo = async(requestOptions) => {
+            var res = await fetch("https://worker-greenglobe2.juliewq25.workers.dev/", requestOptions);
+            var data = await res.json();
+            console.log(data);
+        }
+
+
     },
     methods: {
         countryClicked() {
@@ -321,4 +347,6 @@ export default {
         }
     },
 }
+
+
 </script>
