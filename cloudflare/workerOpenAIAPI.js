@@ -52,7 +52,7 @@ export default {
 		} else {
 			country = "Canada";
 		}
-		var prompt = 'What are 5 ways that ' + country + ' is sustainable?';
+		var prompt = 'What are 3 actionable everyday tasks that an individual living in ' + country + ' can do to become more sustainable?';
 		console.log(prompt);
 
 		// Open AI portion:
